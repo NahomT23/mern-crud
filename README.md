@@ -1,0 +1,1 @@
+This is a full-stack CRUD (Create, Read, Update, Delete) application built with modern technologies such as ShadCN, React, Tailwind CSS, MongoDB, and Express.js. The app offers a user-friendly interface, responsive design, and smooth interactions to manage data effectively. It provides the ability to perform CRUD operations with a clean and interactive UI.
