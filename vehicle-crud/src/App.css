@@ -1,0 +1,9 @@
+/* App.css */
+#root {
+    background-color: #1a1a1a; /* Matches Tailwind's bg-gray-900 */
+    color: #fff; /* Optional: Default text color */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
