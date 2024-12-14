@@ -17,8 +17,6 @@ const Vehicle = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortedBy, setSortedBy] = useState(null);
 
-
-
   useEffect(() => {
     fetchVehicles();
   }, []);
