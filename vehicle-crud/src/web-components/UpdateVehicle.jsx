@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa"; 
+import { toast } from "react-toastify";
 
 const UpdateVehicle = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const UpdateVehicle = () => {
       })
       .then((response) => {
         console.log(response.data);
+        toast.success("Vehicle updated successfully")
         navigate("/");
       })
       .catch((err) => {

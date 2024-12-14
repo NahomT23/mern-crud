@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import DashboardHeader from "../web-components/DashboardHeader";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "react-toastify";
 
 
 const Vehicle = () => {
@@ -19,7 +19,6 @@ const Vehicle = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortedBy, setSortedBy] = useState(null);
 
-  const { toast } = useToast();
   useEffect(() => {
     fetchVehicles();
   }, []);
@@ -36,19 +35,11 @@ const Vehicle = () => {
     axios
     .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
       .then(() => {
-        toast({
-          title: "Deleted Successfully",
-          description: `Deleted Vehicle`,
-          status: "success",
-        });
+        toast.success('Vehicle deleted successfully')
         setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
       })
       .catch((err) => {
-        toast({
-          title: "Error",
-          description: "Failed to delete the vehicle.",
-          status: "error",
-        });
+        toast.error("Could not delete vehicle")
         console.log(err);
       });
   };

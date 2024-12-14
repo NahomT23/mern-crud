@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Vehicle from "./web-components/Vehicle"
 import UpdateVehicle from "./web-components/UpdateVehicle"
 import CreateVehicle from "./web-components/CreateVehicle"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -13,6 +15,7 @@ const App = () => {
         <Route path="/update/:id" element={<UpdateVehicle/>}></Route>
       </Routes>
       </BrowserRouter>
+       <ToastContainer />
     </div>
   )
 }

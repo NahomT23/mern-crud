@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa"; 
+import { toast } from "react-toastify";
+
 
 const CreateVehicle = () => {
   const [vehicleName, setVehicleName] = useState("");
@@ -23,6 +25,7 @@ const CreateVehicle = () => {
       })
       .then((result) => {
         console.log(result);
+        toast.success("Vehicle create successfully")
         navigate("/");
       })
       .catch((err) => console.log(err))
