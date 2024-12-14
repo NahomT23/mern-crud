@@ -24,7 +24,7 @@ const Vehicle = () => {
 
   const fetchVehicles = () => {
     axios
-    .get("https://mern-crud-cyan-pi.vercel.app/api/vehicles")
+    .get("https://mern-crud-amber-ten.vercel.app/api/vehicles")
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
