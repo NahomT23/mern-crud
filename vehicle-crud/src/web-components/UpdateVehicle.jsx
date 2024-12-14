@@ -16,7 +16,7 @@ const UpdateVehicle = () => {
 
   useEffect(() => {
     axios
-      .get(`https://mern-crud-blue.vercel.app/api/vehicles/${id}`)
+      .get(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
       .then((result) => {
         setVehicleName(result.data.name);
         setVehicleStatus(result.data.status);
@@ -30,7 +30,7 @@ const UpdateVehicle = () => {
     setLoading(true);
 
     axios
-      .put(`https://mern-crud-blue.vercel.app/api/vehicles/${id}`, {
+      .put(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`, {
         name: vehicleName,
         status: vehicleStatus,
       })

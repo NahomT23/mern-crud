@@ -17,7 +17,7 @@ const DashboardHeader = () => {
 
   const fetchVehicles = () => {
     axios
-    .get("https://mern-crud-blue.vercel.app/api/vehicles")
+    .get("https://mern-crud-beta-nine.vercel.app/api/vehicles")
       .then((result) => {
         const vehicles = result.data;
 

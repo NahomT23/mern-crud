@@ -24,14 +24,14 @@ const Vehicle = () => {
 
   const fetchVehicles = () => {
     axios
-    .get("https://mern-crud-amber-ten.vercel.app/api/vehicles")
+    .get("https://mern-crud-beta-nine.vercel.app/api/vehicles")
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
 
   const handleDelete = (id) => {
     axios
-    .delete(`https://mern-crud-blue.vercel.app/api/vehicles/${id}`)
+    .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
       .then(() => {
         setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
       })
