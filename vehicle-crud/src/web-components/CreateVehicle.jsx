@@ -17,7 +17,7 @@ const CreateVehicle = () => {
     setLoading(true);
 
     axios
-      .post("http://localhost:3000/api/vehicles", {
+      .post("https://mern-crud-blue.vercel.app/api/vehicles", {
         name: vehicleName,
         status: vehicleStatus,
       })
