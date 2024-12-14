@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaSpinner } from "react-icons/fa"; 
 
 const UpdateVehicle = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const UpdateVehicle = () => {
 
   const [vehicleName, setVehicleName] = useState("");
   const [vehicleStatus, setVehicleStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
@@ -22,10 +24,11 @@ const UpdateVehicle = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-
   const handleUpdate = (e) => {
     e.preventDefault();
-  
+
+    setLoading(true);
+
     axios
       .put(`http://localhost:3000/api/vehicles/${id}`, {
         name: vehicleName,
@@ -33,17 +36,18 @@ const UpdateVehicle = () => {
       })
       .then((response) => {
         console.log(response.data);
-        navigate("/"); // Redirect after successful update
+        navigate("/");
       })
       .catch((err) => {
         console.log("Error updating vehicle:", err);
+      })
+      .finally(() => {
+        setLoading(false); 
       });
   };
-  
+
   return (
     <div className="bg-gray-900 text-white min-h-screen">
-     
-     
       <div className="p-4 bg-gray-800 shadow-md flex items-center">
         <Button
           onClick={() => navigate("/")}
@@ -53,14 +57,10 @@ const UpdateVehicle = () => {
         </Button>
       </div>
 
-
       <div className="flex items-center justify-center mt-10">
         <div className="p-6 w-full max-w-lg bg-gray-800 rounded-md shadow-md">
           <h1 className="text-lg font-semibold text-gray-100 mb-4">Update Vehicle</h1>
           <form onSubmit={handleUpdate} className="space-y-4">
-            
-
-
             <div className="flex flex-col space-y-1">
               <Label htmlFor="vehicleName" className="text-sm font-medium text-gray-300">
                 Vehicle Name
@@ -90,8 +90,16 @@ const UpdateVehicle = () => {
               </select>
             </div>
 
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-              Update Vehicle
+            <Button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              disabled={loading} 
+            >
+              {loading ? (
+                <FaSpinner className="animate-spin mr-2" /> 
+              ) : (
+                "Update Vehicle"
+              )}
             </Button>
           </form>
         </div>
