@@ -18,6 +18,7 @@ const App = () => {
       <ToastContainer
       theme="dark"          
       autoClose={3000}
+      progressClassName="bg-gray-700"
       />
     </div>
   )

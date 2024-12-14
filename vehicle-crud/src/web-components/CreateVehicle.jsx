@@ -25,7 +25,7 @@ const CreateVehicle = () => {
       })
       .then((result) => {
         console.log(result);
-        toast.success("Vehicle create successfully")
+        toast.success("Vehicle created successfully")
         navigate("/");
       })
       .catch((err) => console.log(err))
