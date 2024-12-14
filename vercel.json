@@ -5,7 +5,7 @@
       "src": "vehicle-crud/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "vehicle-crud/dist"
+        "distDir": "dist"
       }
     },
     {
