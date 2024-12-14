@@ -15,7 +15,10 @@ const App = () => {
         <Route path="/update/:id" element={<UpdateVehicle/>}></Route>
       </Routes>
       </BrowserRouter>
-       <ToastContainer />
+      <ToastContainer
+      theme="dark"          
+      autoClose={3000}
+      />
     </div>
   )
 }
