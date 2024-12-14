@@ -18,7 +18,6 @@ const Vehicle = () => {
   const [sortedBy, setSortedBy] = useState(null);
 
 
-  const BASE_URL=
 
   useEffect(() => {
     fetchVehicles();
