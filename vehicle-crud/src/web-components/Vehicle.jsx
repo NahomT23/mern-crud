@@ -17,13 +17,16 @@ const Vehicle = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortedBy, setSortedBy] = useState(null);
 
+
+  const BASE_URL=
+
   useEffect(() => {
     fetchVehicles();
   }, []);
 
   const fetchVehicles = () => {
     axios
-    .get("https://mern-crud-blue.vercel.app/api/vehicles")
+    .get(`https://mern-crud-blue.vercel.app/api/vehicles`)
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
