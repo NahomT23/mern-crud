@@ -38,10 +38,17 @@ const Vehicle = () => {
       .then(() => {
         toast({
           title: "Deleted Successfully",
+          description: `Deleted Vehicle`,
+          status: "success",
         });
         setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
       })
       .catch((err) => {
+        toast({
+          title: "Error",
+          description: "Failed to delete the vehicle.",
+          status: "error",
+        });
         console.log(err);
       });
   };
