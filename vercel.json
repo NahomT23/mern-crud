@@ -9,7 +9,7 @@
       }
     },
     {
-      "src": "api/**/*.js",
+      "src": "api/**/*.js",  
       "use": "@vercel/node"
     }
   ],
@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/vehicle-crud/$1"
+      "dest": "vehicle-crud/$1"  
     }
   ]
 }
