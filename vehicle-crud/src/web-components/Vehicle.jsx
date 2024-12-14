@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import DashboardHeader from "../web-components/DashboardHeader";
-import { toast } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 
 const Vehicle = () => {
@@ -19,6 +19,7 @@ const Vehicle = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortedBy, setSortedBy] = useState(null);
 
+  const { toast } = useToast();
   useEffect(() => {
     fetchVehicles();
   }, []);
@@ -31,37 +32,20 @@ const Vehicle = () => {
       .catch((err) => console.log(err));
   };
 
-  // const handleDelete = (id) => {
-  //   axios
-  //   .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
-  //     .then(() => {
-  //       setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   const handleDelete = (id) => {
     axios
-      .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
+    .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
       .then(() => {
-        setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
         toast({
           title: "Deleted Successfully",
-          description: "The vehicle was deleted successfully.",
-          variant: "success",
         });
+        setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
       })
       .catch((err) => {
         console.log(err);
-        toast({
-          title: "Error",
-          description: "Failed to delete the vehicle.",
-          variant: "destructive",
-        });
       });
   };
+
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
