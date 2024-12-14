@@ -7,43 +7,54 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import DashboardHeader from "../web-components/DashboardHeader";
 import { toast } from "react-toastify";
 
-
 const Vehicle = () => {
   const [vehicles, setVehicles] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortedBy, setSortedBy] = useState(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [vehicleToDelete, setVehicleToDelete] = useState(null);
 
   useEffect(() => {
     fetchVehicles();
   }, []);
 
-
   const fetchVehicles = () => {
     axios
-    .get("https://mern-crud-beta-nine.vercel.app/api/vehicles")
+      .get("https://mern-crud-beta-nine.vercel.app/api/vehicles")
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
 
-  const handleDelete = (id) => {
-    axios
-    .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${id}`)
-      .then(() => {
-        toast.success('Vehicle deleted successfully')
-        setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
-      })
-      .catch((err) => {
-        toast.error("Could not delete vehicle")
-        console.log(err);
-      });
+  const confirmDelete = (vehicle) => {
+    setVehicleToDelete(vehicle);
+    setShowDeleteDialog(true);
   };
 
+  const handleDelete = () => {
+    if (vehicleToDelete) {
+      axios
+        .delete(`https://mern-crud-beta-nine.vercel.app/api/vehicles/${vehicleToDelete._id}`)
+        .then(() => {
+          toast.success("Vehicle deleted successfully");
+          setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== vehicleToDelete._id));
+        })
+        .catch((err) => {
+          toast.error("Could not delete vehicle");
+          console.log(err);
+        })
+        .finally(() => {
+          setShowDeleteDialog(false);
+          setVehicleToDelete(null);
+        });
+    }
+  };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -157,7 +168,7 @@ const Vehicle = () => {
                       variant="outline"
                       size="sm"
                       className="text-red-500 border-red-500 hover:text-red-600 bg-gray-900 hover:bg-gray-900"
-                      onClick={() => handleDelete(vehicle._id)}
+                      onClick={() => confirmDelete(vehicle)}
                     >
                       Delete
                     </Button>
@@ -167,11 +178,34 @@ const Vehicle = () => {
             ))}
           </TableBody>
         </Table>
+
+        {showDeleteDialog && (
+          <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+            <DialogContent className="bg-gray-900">
+              <DialogHeader>
+                <DialogTitle className="text-white">
+                  Are you sure you want to delete {vehicleToDelete?.name}?
+                </DialogTitle>
+              </DialogHeader>
+              <DialogFooter>
+                <Button className="bg-gray-950 hover:bg-black"
+                  onClick={() => setShowDeleteDialog(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="bg-red-600 text-white hover:bg-red-700"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
     </div>
   );
 };
 
 export default Vehicle;
-
-

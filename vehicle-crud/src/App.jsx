@@ -17,7 +17,7 @@ const App = () => {
       </BrowserRouter>
       <ToastContainer
       theme="dark"          
-      autoClose={3000}
+      autoClose={2000}
       progressClassName="bg-gray-700"
       />
     </div>
