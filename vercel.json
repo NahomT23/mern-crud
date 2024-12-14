@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "vehicle-crud/$1"
+      "dest": "/vehicle-crud/$1"
     }
   ]
 }
