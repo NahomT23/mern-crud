@@ -21,9 +21,10 @@ const Vehicle = () => {
     fetchVehicles();
   }, []);
 
+  const BASE_URL = 'https://mern-crud-blue.vercel.app/api/vehicles'
   const fetchVehicles = () => {
     axios
-    .get(`https://mern-crud-blue.vercel.app/api/vehicles`)
+    .get(BASE_URL)
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
