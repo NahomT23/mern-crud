@@ -17,7 +17,7 @@ const DashboardHeader = () => {
 
   const fetchVehicles = () => {
     axios
-      .get("http://localhost:3000")
+    .get("http://localhost:3000/api/vehicles")
       .then((result) => {
         const vehicles = result.data;
 

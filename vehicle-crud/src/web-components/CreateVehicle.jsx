@@ -13,7 +13,7 @@ const CreateVehicle = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/createVehicle", {
+    .post("http://localhost:3000/api/vehicles", {
         name: vehicleName,
         status: vehicleStatus,
       })

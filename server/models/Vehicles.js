@@ -1,5 +1,3 @@
-
-
 import mongoose from "mongoose";
 
 const VehicleSchema = new mongoose.Schema(
@@ -13,6 +11,7 @@ const VehicleSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: ["sold", "pending", "available"],
+      default: "available"
     },
   },
   {

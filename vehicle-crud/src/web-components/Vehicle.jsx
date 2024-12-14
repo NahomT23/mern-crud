@@ -23,14 +23,14 @@ const Vehicle = () => {
 
   const fetchVehicles = () => {
     axios
-      .get("http://localhost:3000")
+    .get("http://localhost:3000/api/vehicles")
       .then((result) => setVehicles(result.data))
       .catch((err) => console.log(err));
   };
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3000/deleteVehicle/${id}`)
+    .delete(`http://localhost:3000/api/vehicles/${id}`)
       .then(() => {
         setVehicles((prev) => prev.filter((vehicle) => vehicle._id !== id));
       })

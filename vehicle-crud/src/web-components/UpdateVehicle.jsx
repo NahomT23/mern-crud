@@ -14,7 +14,7 @@ const UpdateVehicle = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/getVehicle/${id}`)
+      .get(`http://localhost:3000/api/vehicles/${id}`)
       .then((result) => {
         setVehicleName(result.data.name);
         setVehicleStatus(result.data.status);
@@ -22,20 +22,24 @@ const UpdateVehicle = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
+
   const handleUpdate = (e) => {
     e.preventDefault();
-
+  
     axios
-      .put(`http://localhost:3000/updateVehicle/${id}`, {
+      .put(`http://localhost:3000/api/vehicles/${id}`, {
         name: vehicleName,
         status: vehicleStatus,
       })
-      .then(() => {
-        navigate("/");
+      .then((response) => {
+        console.log(response.data);
+        navigate("/"); // Redirect after successful update
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log("Error updating vehicle:", err);
+      });
   };
-
+  
   return (
     <div className="bg-gray-900 text-white min-h-screen">
      
